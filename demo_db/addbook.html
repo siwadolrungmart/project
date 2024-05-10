@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 90px 0 0;
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+            z-index: 99;
+        }
+
+        @media (max-width: 767.98px) {
+            .sidebar {
+                top: 11.5rem;
+                padding: 0;
+            }
+        }
+            
+        .navbar {
+            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
+        }
+
+        @media (min-width: 767.98px) {
+            .navbar {
+                top: 0;
+                position: sticky;
+                z-index: 999;
+            }
+        }
+
+        .sidebar .nav-link {
+            color: #333;
+        }
+
+        .sidebar .nav-link.active {
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light p-3">
+        <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
+            <a class="navbar-brand" href="#">
+                Dashboard
+            </a>
+            <button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
+            <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                  Hello, Admin
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" href="#">Log out</a></li>
+                </ul>
+              </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                          <a class="nav-link" href="index.html">
+                            <i data-feather="home"></i>
+                            <span class="ml-2">Dashboard</span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="member.html">
+                            <i data-feather="users"></i>
+                            <span class="ml-2">Member</span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="#">
+                            <i data-feather="book"></i>
+                            <span class="ml-2">Book</span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="library.html">
+                            <i data-feather="trello"></i>
+                            <span class="ml-2">Library</span>
+                          </a>
+                        </li>     
+                      </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+                <h1 class="h2">Add Book</h1>
+                <p>  </p>
+                <form class="row g-3">
+                    <div class="col-12">
+                      <label for="title" class="form-label">ชื่อหนังสือ</label>
+                      <input type="text" class="form-control" id="title" required>
+                    </div>
+                    <div class="col-12">
+                      <label for="author" class="form-label" >ชื่อผู้แต่ง</label>
+                      <input type="text" class="form-control" id="author" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="quantity" class="form-label">จำนวนหนังสือ</label>
+                        <input type="text" class="form-control" id="quantity" placeholder="กรอกเฉพาะตัวเลขเท่านั้น" required>
+                    </div>
+                    <div class="col-12">
+                      <label for="genre" class="form-label">ชื่อห้องสมุด</label>
+                        <div class="input-group">
+                          <pp></pp>
+                            <select class="form-select" id="librart_id" aria-label="Example select with button addon">
+                              <option selected>โปรดเลือกห้องสมุด</option>
+                              <option value="1">Library A</option>
+                              <option value="2">Library B</option>
+                              <option value="3">Library C</option>
+                              <option value="4">Library D</option>
+                              <option value="5">Library E</option>
+                            </select>
+                          </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="genre" class="form-label">ประเภทหนังสือ</label>
+                        <div class="input-group">
+                            <select class="form-select" id="genre_id">
+                              <option selected>โปรดเลือกรหัสของประเภท</option>
+                              <option value="1">Thriller</option>
+                              <option value="2">Biography</option>
+                              <option value="3">Romance</option>
+                              <option value="4">History</option>
+                              <option value="5">Fantasy</option>
+                              <option value="6">Adventure</option>
+                              <option value="7">Science Fiction</option>
+                              <option value="8">Mystery</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                            </select>
+                          </div>
+                    </div>
+
+
+                  </form>
+                  <div class="d-grid gap-2 d-md-block" >
+                    <p></p>
+                    <button onclick="addBook()"  class="btn btn-success">เพิ่ม</button>
+                    <button type="reset"  class="btn btn-danger">ยกเลิก</button>
+                  </div>
+            </main>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
+
+      <script>
+ // Function to add a book via fetch
+function addBook() {
+    // Get input values from form fields
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const quantity = document.getElementById('quantity').value;
+    const genreId = document.getElementById('genre_id').value;
+    const libraryId = document.getElementById('librart_id').value;
+
+    // Create a JSON object with the book data
+    const bookData = {
+        title: title,
+        author: author,
+        quantity: parseInt(quantity),
+        genre_id: parseInt(genreId),
+        library_id:parseInt(libraryId)
+    };
+    console.log(bookData)
+    // Send a POST request to the server to add the book
+    fetch(' http://localhost:3000/book', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(bookData)
+        
+    })
+    .then(response => {
+        if (response.ok) {
+            // Book added successfully
+            console.log("Book added successfully");
+            // Optionally, you can redirect the user to another page or display a success message
+        } else {
+            // Error adding book
+            console.error("Error adding book");
+        }
+    })
+    .catch(error => {
+        // Handle any network errors
+        console.error("Network error:", error);
+    });
+}
+
+
+      </script>
+</body>
+</html>
